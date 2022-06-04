@@ -26,8 +26,8 @@ export default function ConditionsBox() {
             </AccordionButton>
           </h2>
           <AccordionPanel>
-            {Conditions.map((item) => (
-              <Accordion allowToggle defaultIndex={[2,4]}>
+            {Conditions.map((item, index) => (
+              <Accordion allowToggle defaultIndex={[2,4]} key={index}>
                 <AccordionItem>
                   <h2>
                     <AccordionButton>
@@ -39,8 +39,8 @@ export default function ConditionsBox() {
                   </h2>
                   <AccordionPanel>
                     <UnorderedList>
-                      {item.desc.map((desc) => (
-                        <ListItem>{desc}</ListItem>
+                      {item.desc.map((desc, index) => (
+                        <ListItem key={index}>{desc}</ListItem>
                       ))}
                     </UnorderedList>
                   </AccordionPanel>

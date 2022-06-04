@@ -1,10 +1,31 @@
-import { Flex, Heading } from "@chakra-ui/react";
+import { Flex, Heading, List } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { Combatant } from "../models/combatant";
+import { User } from "../models/user";
 
-export default function CombatBoard() {
-  return <Flex flexDirection="column">
-      <Heading>Campaign Infos</Heading>
-      <Flex bgColor={"#10495F"} rounded="6" boxShadow={"dark-lg"} padding=".5rem">
-          <Heading size={"lg"}>Combat Helper</Heading>
-      </Flex>
-  </Flex>;
+export default function CombatBoard({
+  user,
+  setUser,
+}: {
+  user: User;
+  setUser: Function;
+}) {
+  const [initiative, setInitiative] = useState();
+
+  useEffect(() => {
+    
+  });
+
+  return (
+    <Flex
+      flexDirection="column"
+      bgColor={"#10495F"}
+      rounded="6"
+      boxShadow={"dark-lg"}
+      padding=".5rem"
+    >
+      <Heading size={"md"}>Combat Helper</Heading>
+      <List></List>
+    </Flex>
+  );
 }

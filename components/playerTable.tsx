@@ -13,8 +13,9 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { DummyPlayers } from "../data/dummy_player_data";
+import { User } from "../models/user";
 
-export function PlayerBox() {
+export function PlayerTable({user} : {user: User}) {
   return (
     <TableContainer>
       <Table variant={"simple"}>
@@ -40,8 +41,8 @@ export function PlayerBox() {
           </Tr>
         </Thead>
         <Tbody>
-          {DummyPlayers.map((player) => (
-            <Tr>
+          {user.players.map((player, index) => (
+            <Tr key={index}>
               <Td>{player.name}</Td>
               <Td>{player.level}</Td>
               <Td>{player.hitpoints}</Td>
