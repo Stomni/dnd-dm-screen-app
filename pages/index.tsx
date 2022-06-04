@@ -73,6 +73,10 @@ const Home: NextPage = () => {
                 <InitiativeModal activeCombat={setCombatActive} user={user} setUser={setUser}/>
                 <PlayerModal user={user} setUser={setUser} />
                 <EnemyModal user={user} setUser={setUser} />
+                <Button onClick={() => {
+                  user.combatants = [];
+                  setUser(user);
+                }}>End Combat</Button>
               </HStack>
             </VStack>
             <VStack flex={"1"} border={"1px solid white"}>

@@ -17,8 +17,8 @@ import { User } from "../models/user";
 
 export function PlayerTable({user} : {user: User}) {
   return (
-    <TableContainer>
-      <Table variant={"simple"}>
+    <TableContainer width={"100%"}>
+      <Table variant={"simple"} size="md">
         <TableCaption placement="top">
           <Flex justifyContent={"space-between"}>
             <Text fontSize={"1.5em"}>Players</Text>
@@ -48,7 +48,7 @@ export function PlayerTable({user} : {user: User}) {
               <Td>{player.hitpoints}</Td>
               <Td>{player.passiveInsight}</Td>
               <Td>{player.passivePerception}</Td>
-              <Td>{player.languages.join(" | ")}</Td>
+              <Td >{player.languages.join(" | ")}</Td>
               <Td>{player.darkvision ? "Yes" : "No"}</Td>
             </Tr>
           ))}

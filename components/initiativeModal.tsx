@@ -32,9 +32,24 @@ export function InitiativeModal({
 
   function submithandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    user.combatants.sort((a, b) => {
+      return b.initiative - a.initiative;
+    });
     onClose();
     setUser(user);
     activeCombat(true);
+  }
+
+  function update(user: User, combatant: Combatant): void {
+    var findCombatant = user.combatants.findIndex(
+      (e) => e.name === combatant.name
+    );
+
+    if (findCombatant !== -1) {
+      user.combatants[findCombatant].initiative = combatant.initiative;
+    } else {
+      user.combatants.push(combatant);
+    }
   }
 
   return (
@@ -57,17 +72,13 @@ export function InitiativeModal({
                           width={"30%"}
                           placeholder="Initiative"
                           onChange={(e) => {
-
-                            //write array update method
                             const newCombatant = new Combatant({
                               name: player.name,
                               init: parseInt(e.target.value),
                               isDead: false,
                             });
-                            setTimeout(
-                              () => user.combatants.push(newCombatant),
-                              2000
-                            );
+
+                            update(user, newCombatant);
                           }}
                         />
                       </HStack>
@@ -88,10 +99,8 @@ export function InitiativeModal({
                                 isDead: false,
                                 hp: enemy.hitpoints,
                               });
-                              setTimeout(
-                                () => user.combatants.push(newEnemy),
-                                2000
-                              );
+
+                              update(user, newEnemy);
                             }}
                           />
                         </HStack>
