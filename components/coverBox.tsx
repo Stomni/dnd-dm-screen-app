@@ -7,7 +7,6 @@ import {
   Box,
   Flex,
   Heading,
-  List,
   ListItem,
   UnorderedList,
 } from "@chakra-ui/react";

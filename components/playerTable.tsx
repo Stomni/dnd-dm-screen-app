@@ -12,12 +12,12 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { DummyPlayers } from "../data/dummy_player_data";
 import { User } from "../models/user";
+import { theme } from "../theme";
 
 export function PlayerTable({user} : {user: User}) {
   return (
-    <TableContainer width={"100%"}>
+    <TableContainer width={"100%"} border={`1px solid ${theme.colors.dark.accent}`} borderRadius="5">
       <Table variant={"simple"} size="md">
         <TableCaption placement="top">
           <Flex justifyContent={"space-between"}>

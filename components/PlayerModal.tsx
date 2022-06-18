@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { User } from "../models/user";
+import { theme } from "../theme";
 
 export function PlayerModal({
   user,
@@ -57,8 +58,8 @@ export function PlayerModal({
   }
   return (
     <>
-      <Button onClick={onOpen}>Add New Player</Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Button onClick={onOpen} bgColor={theme.colors.dark.accent}>Add New Player</Button>
+      <Modal isOpen={isOpen} onClose={onClose} size="3xl">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Add a new Player</ModalHeader>

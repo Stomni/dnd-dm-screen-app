@@ -12,19 +12,16 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-  VStack,
 } from "@chakra-ui/react";
-import { FormEventHandler } from "react";
-import { DummyPlayers } from "../data/dummy_player_data";
-import { Combatant, Enemy } from "../models/combatant";
+
+import { Combatant } from "../models/combatant";
 import { User } from "../models/user";
+import { theme } from "../theme";
 
 export function InitiativeModal({
-  activeCombat,
   user,
   setUser,
 }: {
-  activeCombat: Function;
   user: User;
   setUser: Function;
 }) {
@@ -36,8 +33,9 @@ export function InitiativeModal({
       return b.initiative - a.initiative;
     });
     onClose();
+    user.activeCombat = true;
     setUser(user);
-    activeCombat(true);
+    
   }
 
   function update(user: User, combatant: Combatant): void {
@@ -54,7 +52,7 @@ export function InitiativeModal({
 
   return (
     <>
-      <Button onClick={onOpen}>Start Initiative</Button>
+      <Button onClick={onOpen} bgColor={theme.colors.dark.accent}>Start Initiative</Button>
       <Modal isOpen={isOpen} onClose={onClose} size="xl">
         <ModalOverlay />
         <ModalContent>
@@ -76,6 +74,10 @@ export function InitiativeModal({
                               name: player.name,
                               init: parseInt(e.target.value),
                               isDead: false,
+                              conditions: [],
+                              hitpoints: 0,
+                              maxHp: 0,
+                              isEnemy: false,
                             });
 
                             update(user, newCombatant);
@@ -93,11 +95,14 @@ export function InitiativeModal({
                             width={"30%"}
                             placeholder="Initiative"
                             onChange={(e) => {
-                              const newEnemy = new Enemy({
+                              const newEnemy = new Combatant({
                                 name: enemy.name,
                                 init: parseInt(e.target.value),
                                 isDead: false,
-                                hp: enemy.hitpoints,
+                                hitpoints: enemy.hitpoints,
+                                maxHp: enemy.hitpoints,
+                                conditions: [],
+                                isEnemy: true,
                               });
 
                               update(user, newEnemy);
@@ -114,7 +119,7 @@ export function InitiativeModal({
               <Button
                 type="submit"
                 onClick={() => {
-                  activeCombat(true);
+                  
                 }}
               >
                 Fight
